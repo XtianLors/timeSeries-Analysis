@@ -11,8 +11,11 @@ require(zoo)
 
 data(gas)
 length(gas)
-
+dataGas <- gas
 set.seed(1)
+
+head(gas)
+plot(gas)
 
 z <- zoo(11:15, as.Date(31:35))
 rollapply(z, 1, mean)
@@ -37,8 +40,11 @@ aggregate(z2, c(3,3,3,6,6,6), mean)
 #example(function_name)
 #str(object_name)
 
+Fact <- function(n) if (n == 1) 1 else n * Fact(n - 1)
+Fact(5)
 
-
+data(AirPassengers)
+ AP <- AirPassengers
 
 
 
