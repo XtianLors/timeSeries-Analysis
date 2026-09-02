@@ -7,7 +7,8 @@
 #data()
 
 library("forecast")
-require(zoo)
+library("TSA")
+require(stats); require(graphics);require(zoo)
 
 data(gas)
 length(gas)
