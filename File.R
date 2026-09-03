@@ -57,17 +57,45 @@ data(AirPassengers)
 AP <- AirPassengers
 start(AP); end(AP); frequency(AP)
 
+data(EuStockMarkets)
 
+stocks <- EuStockMarkets
+head(stocks)
+str(stocks)
 
+start(stocks); end(stocks);frequency(stocks)
+plot(stocks, main="Stocks")
 
+data(JohnsonJohnson)
+#jj = ts(scan("/mydata/jj.dat"), start=1960, frequency=4)
+#
 
+JohnsonJohnson -> jj.dat
+plot(jj.dat, ylab="Earnings Per Share", main="Johnson & Johnson",	type="l", col="pink")
 
+start(jj.dat); end(jj.dat); frequency(jj.dat)
 
+plot(jj.dat, type="o", col="blue", lty="dashed")
+plot(jj.dat, type="o", col="orange", lty="dashed")
 
+plot.ts(jj.dat, main="Johnson & Johnson")
+ts.plot(jj.dat)
 
+x = -5:5
+y = 5*cos(x)
+par(mfrow=c(3, 2))
+plot(x, main="plot(x)")
+plot(x, y, main="plot(x,y)")
+#--- plot.ts:
+plot.ts(x, main="plot.ts(x)")
+plot.ts(x, y, main="plot.ts(x,y)")
 
-
-
-
+#--- ts.plot:
+ts.plot(x, main="ts.plot(x)")
+ts.plot(ts(x), ts(y), col=1:2, main="ts.plot(x,y)") # note- x and y are ts objects
+#--- the help files [? and help() are the same]:
+?plot.ts
+help(ts.plot)
+?par # might as well skim the graphical parameters help file while you're here
 
 
