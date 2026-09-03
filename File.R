@@ -10,6 +10,7 @@ library("forecast")
 library("TSA")
 require(stats); require(graphics);require(zoo)
 
+#attach(gas)
 data(gas)
 length(gas)
 dataGas <- gas
@@ -20,6 +21,17 @@ length(dataGas)
 class(dataGas)
 start(dataGas); end(dataGas); frequency(dataGas)
 plot(dataGas)
+plot(dataGas, main="Gas from 1960 to 1990", sub="Frecuencia anual del precio de Gas")
+roll.dataGas <- rollapply(dataGas, 12, mean)
+plot(roll.dataGas, main="With a rolling of 12", sub="Applying a rolling of 12")
+cor(dataGas, roll.dataGas)
+min(roll.dataGas); max(roll.dataGas) ; mean(roll.dataGas)
+start(roll.dataGas);end(roll.dataGas);frequency(roll.dataGas);length(roll.dataGas)
+start(dataGas); end(dataGas); frequency(dataGas);length(dataGas)
+min(dataGas); max(dataGas) ; mean(dataGas)
+hepoints(dataGas[2], type="p")
+
+layout(1:2)
 
 z <- zoo(11:15, as.Date(31:35))
 length(z)
@@ -98,4 +110,13 @@ ts.plot(ts(x), ts(y), col=1:2, main="ts.plot(x,y)") # note- x and y are ts objec
 help(ts.plot)
 ?par # might as well skim the graphical parameters help file while you're here
 
+
+#layout()
+
+#References
+
+	#https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/points.html
+	#https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/par.html
+	#https://stat.ethz.ch/R-manual/R-devel/library/base/html/options.html
+	#
 
