@@ -77,6 +77,21 @@ str(stocks)
 
 start(stocks); end(stocks);frequency(stocks)
 plot(stocks, main="Stocks")
+start(stocks); end(stocks); frequency(stocks); length(stocks)
+levels(stocks)
+#ts.plot(stocks[1:1860], start=c(1991, 130), end=c(1991, 135), frequency=260)
+
+#ts.plot(stocks[1:1860], stocks[1861:3720], 
+#	gpars=list(xlab="year", ylab="Price", lty=c(1:2)))
+layout(1:2)
+ts.plot(stocks[,"DAX"], stocks[,"CAC"], 
+	gpars=list(xlab="year", ylab="Price", lty=c(1:2)), col=c("red", "blue"))
+
+ts.plot(stocks[,"DAX"], stocks[,"SMI"], stocks[, "FTSE"],
+	gpars=list(xlab="Year", ylab="Price", lty=c(1:3)),
+	col=c("red", "green", "purple"))
+
+
 
 data(JohnsonJohnson)
 #jj = ts(scan("/mydata/jj.dat"), start=1960, frequency=4)
@@ -110,6 +125,10 @@ ts.plot(ts(x), ts(y), col=1:2, main="ts.plot(x,y)") # note- x and y are ts objec
 help(ts.plot)
 ?par # might as well skim the graphical parameters help file while you're here
 
+ts.plot(ldeaths, mdeaths, fdeaths,
+        gpars=list(xlab="year", ylab="deaths", lty=c(1:3)))
+start(ldeaths); end(ldeaths); frequency(ldeaths); length(ldeaths)
+
 
 #layout()
 
@@ -118,5 +137,12 @@ help(ts.plot)
 	#https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/points.html
 	#https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/par.html
 	#https://stat.ethz.ch/R-manual/R-devel/library/base/html/options.html
-	#
+	#https://stat.ethz.ch/R-manual/R-devel/library/stats/html/ts.html
+	#https://stat.ethz.ch/R-manual/R-devel/library/stats/html/window.html
+	#http://127.0.0.1:29116/library/zoo/html/rollapply.html
+	#http://127.0.0.1:24231/library/stats/html/ts.plot.html
+	#http://127.0.0.1:24231/library/stats/html/plot.ts.html
+	#https://cran.r-project.org/web/packages/tseries/index.html
+	#https://cran.r-project.org/web/packages/tseries/tseries.pdf
+	#https://www.rdocumentation.org/packages/modopt.matlab/versions/1.0-2/topics/quadprog
 
