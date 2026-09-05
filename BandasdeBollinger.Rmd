@@ -1,0 +1,84 @@
+---
+title: "Bandas de Bollinger para Bitcoin"
+author: "Cristian Daniel López Rios"
+date: "`r Sys.Date()`"
+output: word_document
+runtime: shiny
+---
+
+
+## Definir la UI
+```{r , eval=FALSE}
+library(shiny)
+library(quantmod)
+```
+
+## Definir la UI
+```{r , eval=FALSE}
+ui <- fluidPage(
+  titlePanel("Visualización de Bitcoin con Bandas de Bollinger"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("window",
+                  "Selecciona la ventana para las Bandas de Bollinger:",
+                  min = 10,
+                  max = 50,
+                  value = 20,
+                  step = 1),
+      helpText("Ajusta la longitud de la ventana de cálculo.")
+    ),
+    
+    mainPanel(
+      plotOutput("btcPlot"),
+      plotOutput("bollingerPlot")
+    )
+  )
+)
+
+```
+
+
+
+## Definir el servidor
+
+```{r , eval=FALSE }
+server <- function(input, output) {
+  # Cargar datos históricos de Bitcoin
+  btc_data <- reactive({
+    getSymbols("BTC-USD", src = "yahoo", auto.assign = FALSE)  # Datos de Yahoo Finance
+  })
+  
+  # Gráfico de Bitcoin (valores históricos)
+  output$btcPlot <- renderPlot({
+    data <- btc_data()
+    chartSeries(data, 
+                name = "Precio Histórico de Bitcoin (BTC-USD)",
+                theme = chartTheme("white"))
+  })
+  
+  # Gráfico de Bandas de Bollinger
+```{r , eval=FALSE}
+output$bollingerPlot <- renderPlot({
+    data <- btc_data()
+    bollinger <- BBands(Cl(data), n = input$window)  # Calcular Bandas de Bollinger
+    
+    chartSeries(data, 
+                name = paste("Bandas de Bollinger (n =", input$window, ")"),
+                TA = paste0("addBBands(n=", input$window, ", sd=2)"),
+                theme = chartTheme("white"))
+  })
+}
+  
+```
+
+
+## Definir el servidor
+```{r, eval=FALSE}
+shinyApp(ui = ui, server = server)
+```
+
+#Referencias
+Cowpertwait, P. S. P.; Metcalfe, A. V. (2009). Introductory Time Series with R. Springer Science+Business Media.
+
+
