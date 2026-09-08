@@ -9,6 +9,9 @@
 library("forecast")
 library("TSA")
 require(stats); require(graphics);require(zoo)
+attach(women)
+attach(LakeHuron)
+attach(Indometh)
 
 #attach(gas)
 data(gas)
@@ -65,6 +68,7 @@ aggregate(z2, c(3,3,3,6,6,6), mean)
 Fact <- function(n) if (n == 1) 1 else n * Fact(n - 1)
 Fact(5)
 
+attach()
 data(AirPassengers)
 AP <- AirPassengers
 start(AP); end(AP); frequency(AP)
@@ -129,8 +133,11 @@ ts.plot(ldeaths, mdeaths, fdeaths,
         gpars=list(xlab="year", ylab="deaths", lty=c(1:3)))
 start(ldeaths); end(ldeaths); frequency(ldeaths); length(ldeaths)
 
-
 #layout()
+
+
+
+
 
 #References
 
