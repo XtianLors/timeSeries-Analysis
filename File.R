@@ -9,6 +9,7 @@
 library("forecast")
 library("TSA")
 require(stats); require(graphics);require(zoo)
+library(scales)
 attach(women)
 attach(LakeHuron)
 attach(Indometh)
@@ -84,6 +85,10 @@ plot(stocks, main="Stocks")
 start(stocks); end(stocks); frequency(stocks); length(stocks)
 levels(stocks)
 #ts.plot(stocks[1:1860], start=c(1991, 130), end=c(1991, 135), frequency=260)
+sigma <- rep(c("alpha", "donkey", "tiguer", "incel", "biggy"), each=10)
+#levels(sigma)
+unique(sigma)
+#level(sigma)
 
 #ts.plot(stocks[1:1860], stocks[1861:3720], 
 #	gpars=list(xlab="year", ylab="Price", lty=c(1:2)))
@@ -135,7 +140,83 @@ start(ldeaths); end(ldeaths); frequency(ldeaths); length(ldeaths)
 
 #layout()
 
+plot(x = x, 
+     y = y, 
+     main = "An Example of Heteroskedasticity",
+     xlab = "Student-Teacher Ratio",
+     ylab = "Test Score",
+     cex = 0.5, 
+     pch = 19, 
+     xlim = c(8, 27), 
+     ylim = c(600, 710))
+abline(mod, col = "darkred")
+boxplot(formula = y ~ x, 
+        add = TRUE, 
+        at = c(10, 15, 20, 25), 
+        col = alpha("gray", 0.4), 
+        border = "black")
+min(x); max(x); length(x)
+hist(x, include.lowest=TRUE)
+#hist(x, breaks=3, include.lowest=TRUE)
+hist(x, breaks=3, include.lowest=TRUE, col="lightblue")
+hist(x, include.lowest=TRUE, plot=FALSE)
+hist(x, breaks="FD", include.lowest=TRUE, col="pink")
+hist(x, breaks="Sturges", include.lowest=TRUE, col="wheat")
+hist(x, breaks="scott", include.lowest=TRUE, col="goldenrod2")
+hist(x, breaks=c(), include.lowest=TRUE, col="VioletRed1")
 
+set.seed(123)
+x <- rep(c(10, 15,20, 25), each=25)
+e <- c()
+e[1:25] <- rnorm(25, sd=10)
+hist(e[1:25])
+max(e[1:25]); min(e[1:25]); length(e[1:25]); cor(e[1:25], e[26:50])
+e[26:50] <- rnorm(25, sd=15)
+max(e[26:50]); min(e[26:50]); length(e[26:50])
+e[51:75] <- rnorm(25, sd=20)
+max(e[51:75]); min(e[51:75]); length(e[51:75])
+e[76:100] <- rnorm(25, sd=25)
+max(e[76:100]); min(e[76:100]); length(e[76:100]); cor(e[1:25], e[76:100])
+sqrthist(e[76:100])
+
+y <- 720 - (3.3*x) + e
+max(y); min(y); length(y)
+hist(y)
+
+vec1 <- ts(e[1:25], frequency = 12, start=c(1980, 1))
+vec1Sm <- rollapply(vec1 , 12, mean)
+plot(vec1)
+start(vec1); end(vec1); frequency(vec1)
+vec2 <- ts(e[26:50], frequency = 12, start=c(1980, 1))
+vec2Sm <- rollapply(vec2 , 12, mean)
+plot(vec2)
+start(vec2); end(vec2); frequency(vec2)
+vec3 <- ts(e[51:75], frequency = 12, start=c(1980,1))
+vec3Sm <- rollapply(vec3 , 12, mean)
+vec4 <- ts(e[76:100], frequency = 12, start=c(1980,1))
+vec4Sm <- rollapply(vec4 , 12, mean)
+
+ts.plot(vec1Sm, vec2Sm, vec3Sm, vec4Sm)
+ts.plot(vec1, vec2, vec3, vec4)
+
+op <- par(mfrow = c(2, 2))
+hist(islands)
+utils::str(hist(islands, col = "gray", labels = TRUE))
+hist(sqrt(islands), breaks = 12, col = "lightblue", border = "pink")
+r <- hist(sqrt(islands), breaks = c(4*0:5, 10*3:5, 70, 100, 140),
+          col = "blue1")
+text(r$mids, r$density, r$counts, adj = c(.5, -.5), col = "blue3")
+
+sapply(r[2:3], sum)
+sum(r$density * diff(r$breaks)) # == 1
+lines(r, lty = 3, border = "purple") # -> lines.histogram(*)
+par(op)
+
+require(utils) # for str
+str(hist(islands, breaks = 12, plot =  FALSE)) #-> 10 (~= 12) breaks
+str(hist(islands, breaks = c(12,20,36,80,200,1000,17000), plot = FALSE))
+hist(islands, breaks = c(12,20,36,80,200,1000,17000), freq = TRUE,
+     main = "WRONG histogram") # and warning
 
 
 
