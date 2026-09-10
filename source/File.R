@@ -80,6 +80,7 @@ stocks <- EuStockMarkets
 head(stocks)
 str(stocks)
 stockDAXRoll <- rollapply(stocks[,"DAX"], 260, mean)
+png(file = ".\\media\\HistogramAndTS2.png")
 layout(1:2)
 #breaks="scott", breaks="Sturges", breaks="FD"
 hist(stocks[,"DAX"],breaks="FD", main = "Histogram of Prices",col="YellowGreen", border = "lightblue")
@@ -87,6 +88,9 @@ plot(stocks[,"DAX"], main = "Time Series of DAX", col="lightblue")
 ts.plot(stocks[,"DAX"], stockDAXRoll , main = "Time Series of DAX", col=c("lightblue", "blue"))
 start(stocks[,"DAX"]); end(stocks[,"DAX"]); frequency(stocks[,"DAX"])
 min(stocks[,"DAX"]); max(stocks[,"DAX"]); length(stocks[,"DAX"])
+dev.print(png, file = "media\\HistogramAndTS.png", width = 6, height = 4, units = "in", res = 300)
+
+dev.off()
 
 start(stocks); end(stocks);frequency(stocks)
 plot(stocks, main="Stocks")
