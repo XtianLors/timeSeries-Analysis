@@ -79,6 +79,14 @@ data(EuStockMarkets)
 stocks <- EuStockMarkets
 head(stocks)
 str(stocks)
+stockDAXRoll <- rollapply(stocks[,"DAX"], 260, mean)
+layout(1:2)
+#breaks="scott", breaks="Sturges", breaks="FD"
+hist(stocks[,"DAX"],breaks="FD", main = "Histogram of Prices",col="YellowGreen", border = "lightblue")
+plot(stocks[,"DAX"], main = "Time Series of DAX", col="lightblue")
+ts.plot(stocks[,"DAX"], stockDAXRoll , main = "Time Series of DAX", col=c("lightblue", "blue"))
+start(stocks[,"DAX"]); end(stocks[,"DAX"]); frequency(stocks[,"DAX"])
+min(stocks[,"DAX"]); max(stocks[,"DAX"]); length(stocks[,"DAX"])
 
 start(stocks); end(stocks);frequency(stocks)
 plot(stocks, main="Stocks")
@@ -191,6 +199,7 @@ vec2 <- ts(e[26:50], frequency = 12, start=c(1980, 1))
 vec2Sm <- rollapply(vec2 , 12, mean)
 plot(vec2)
 start(vec2); end(vec2); frequency(vec2)
+
 vec3 <- ts(e[51:75], frequency = 12, start=c(1980,1))
 vec3Sm <- rollapply(vec3 , 12, mean)
 vec4 <- ts(e[76:100], frequency = 12, start=c(1980,1))
