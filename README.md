@@ -1,4 +1,4 @@
-* Análisis de Datos
+# Análisis de Series Temporales
 
 Valores de una serie temporal, con frequencía de 256 observaciones por ciclo y promedio móvil.
 

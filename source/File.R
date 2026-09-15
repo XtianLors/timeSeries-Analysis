@@ -89,8 +89,14 @@ ts.plot(stocks[,"DAX"], stockDAXRoll , main = "Time Series of DAX", col=c("light
 start(stocks[,"DAX"]); end(stocks[,"DAX"]); frequency(stocks[,"DAX"])
 min(stocks[,"DAX"]); max(stocks[,"DAX"]); length(stocks[,"DAX"])
 dev.print(png, file = "media\\HistogramAndTS_Scaled.png", width = 18, height = 12, units = "in", res = 300)
-
 dev.off()
+
+#curve()
+#lines()
+#abline()
+#points()
+
+
 
 start(stocks); end(stocks);frequency(stocks)
 plot(stocks, main="Stocks")
@@ -231,7 +237,12 @@ str(hist(islands, breaks = c(12,20,36,80,200,1000,17000), plot = FALSE))
 hist(islands, breaks = c(12,20,36,80,200,1000,17000), freq = TRUE,
      main = "WRONG histogram") # and warning
 
-
+x  <- seq(-2, 2, 0.05)
+y1 <- pnorm(x)
+y2 <- pnorm(x, 1, 1)
+plot(x, y1, type = "l", col = "red")
+par(new=TRUE)
+plot(x, y2, type = "l", col = "green")
 
 #References
 
@@ -246,4 +257,6 @@ hist(islands, breaks = c(12,20,36,80,200,1000,17000), freq = TRUE,
 	#https://cran.r-project.org/web/packages/tseries/index.html
 	#https://cran.r-project.org/web/packages/tseries/tseries.pdf
 	#https://www.rdocumentation.org/packages/modopt.matlab/versions/1.0-2/topics/quadprog
+	#https://stackoverflow.com/questions/2564258/plot-two-graphs-in-a-same-plot
+
 
