@@ -53,6 +53,7 @@ start(s); end(s); frequency(s)
 z2 <- zoo(rnorm(6))
 rollapply(z2, 3, mean, by = 3)
 aggregate(z2, c(3,3,3,6,6,6), mean)
+window()
 
 #help(lm)
 #?lm
