@@ -25,10 +25,50 @@ length(dataGas)
 class(dataGas)
 start(dataGas); end(dataGas); frequency(dataGas)
 plot(dataGas)
+
+
+#for (i in 1:length(dataGas[468])){
+	
+#}
+
+spamsVal <- seq(0, 468, 12)
+subVal <- matrix(0, 12, 39)
+i = 0
+for (i in 0:39){
+	lowerEnd <- spamsVal[i]
+	upperBound <- spamsVal[i+1]
+	dataGas[lowerEnd:upperBound]
+	i = i + 1
+}
+
+#for (i in 1:length(39)){
+for (i in 0:39){
+	g <- i * 12
+}
+i = 1
+j = 1
+while(i < 468)
+{
+	i = i + 1
+	cat(12*j)
+	
+}
+
+spamsVal <- seq(0, 468, 12)
+i = 0
+while(i < max(spamsVal)){
+	i = i + 1
+	
+}
+
+dataGas
+
 plot(dataGas, main="Gas from 1960 to 1990", sub="Frecuencia anual del precio de Gas")
 roll.dataGas <- rollapply(dataGas, 12, mean)
 plot(roll.dataGas, main="With a rolling of 12", sub="Applying a rolling of 12")
-cor(dataGas, roll.dataGas)
+
+#cor(dataGas, roll.dataGas)
+
 min(roll.dataGas); max(roll.dataGas) ; mean(roll.dataGas)
 start(roll.dataGas);end(roll.dataGas);frequency(roll.dataGas);length(roll.dataGas)
 start(dataGas); end(dataGas); frequency(dataGas);length(dataGas)
