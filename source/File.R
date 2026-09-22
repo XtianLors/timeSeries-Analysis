@@ -24,14 +24,22 @@ head(gas)
 length(dataGas)
 class(dataGas)
 start(dataGas); end(dataGas); frequency(dataGas)
-plot(dataGas)
+plot(dataGas, main="Gas price")
 window(dataGas, 1959, c(1959,12))
 
 #for (i in 1:length(dataGas[468])){
 	
 #}
 
-spamsVal <- seq(0, 468, 12)
+#spamsVal2 <- seq(0, 468, 12) #Esta es la correcta
+#spamsVal2[1] <- 1
+#for (i in 1:39){
+#	lowerEnd <- spamsVal2[i]
+#	upperBound <- spamsVal2[i+1]
+#	subVal[,i] <- dataGas[lowerEnd:upperBound]
+#}
+
+spamsVal <- seq(1, 468, 11)
 subVal <- matrix(0, 12, 39)
 
 for (i in 1:39){
@@ -39,6 +47,7 @@ for (i in 1:39){
 	upperBound <- spamsVal[i+1]
 	subVal[,i] <- dataGas[lowerEnd:upperBound]
 }
+subVal[1,]
 
 #for (i in 1:length(39)){
 for (i in 0:39){
