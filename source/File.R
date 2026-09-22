@@ -25,7 +25,7 @@ length(dataGas)
 class(dataGas)
 start(dataGas); end(dataGas); frequency(dataGas)
 plot(dataGas)
-
+window(dataGas, 1959, c(1959,12))
 
 #for (i in 1:length(dataGas[468])){
 	
@@ -33,12 +33,11 @@ plot(dataGas)
 
 spamsVal <- seq(0, 468, 12)
 subVal <- matrix(0, 12, 39)
-i = 0
-for (i in 0:39){
+
+for (i in 1:39){
 	lowerEnd <- spamsVal[i]
 	upperBound <- spamsVal[i+1]
-	dataGas[lowerEnd:upperBound]
-	i = i + 1
+	subVal[,i] <- dataGas[lowerEnd:upperBound]
 }
 
 #for (i in 1:length(39)){
