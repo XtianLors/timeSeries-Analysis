@@ -298,12 +298,15 @@ window(presidents, deltat = 1)  # All Qtr1s
 window(presidents, start = c(1945,3), deltat = 1)  # All Qtr3s
 window(presidents, 1944, c(1979,2), extend = TRUE)
 
-pres <- window(presidents, 1945, c(1949,4)) # values in the 1940's
-window(pres, 1945.25, 1945.50) <- c(60, 70)
-window(pres, 1944, 1944.75) <- 0 # will generate a warning
-window(pres, c(1945,4), c(1949,4), frequency = 1) <- 85:89
-pres
+x <- c(3:5, 11:8, 8 + 0:5)
+(ux <- unique(x))
+(u2 <- unique(x, fromLast = TRUE)) # different order
+stopifnot(identical(sort(ux), sort(u2)))
 
+length(unique(sample(100, 100, replace = TRUE)))
+## approximately 100(1 - 1/e) = 63.21
+
+unique(iris)
 #References
 
 	#https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/points.html
