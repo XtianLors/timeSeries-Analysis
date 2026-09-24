@@ -41,6 +41,7 @@ window(dataGas, 1959, c(1959,12))
 
 spamsVal <- seq(1, 468, 11)
 subVal <- matrix(0, 12, 39)
+subMean <- matrix(0, 1, 39)
 
 for (i in 1:39){
 	lowerEnd <- spamsVal[i]
@@ -49,6 +50,10 @@ for (i in 1:39){
 }
 subVal[1,]
 
+for (i in 1:39){
+
+	subMean[] <- mean(subVal[,i])
+}
 #for (i in 1:length(39)){
 for (i in 0:39){
 	g <- i * 12
