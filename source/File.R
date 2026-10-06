@@ -24,9 +24,9 @@ head(gas)
 length(dataGas)
 class(dataGas)
 start(dataGas); end(dataGas); frequency(dataGas)
+cat("\n", "The amount periods are: ", floor(length(dataGas) / frequency(dataGas)), "\nSince the remainder is ", length(dataGas) %% frequency(dataGas), " the fraction is: ", ((length(dataGas) / frequency(dataGas)) - floor(length(dataGas) / frequency(dataGas))), "\n")
 plot(dataGas, main="Gas price")
 window(dataGas, 1959, c(1959,12))
-
 # 39 valores de  window(dataGas, 1956, c(1956,12)) hasta window(dataGas, 1995, c(1995,8))
 # los valores enteros son de window(dataGas, 1956, c(1956,12)) a window(dataGas, 1994, c(1994,12))
 
@@ -66,6 +66,8 @@ rollDataGas <- rollapply(dataGas, 8, mean)
 ts.plot(dataGas[], rollDataGas, col=c("red", "green"))
 ts.plot(dataGas[], rollDataGas, col=c("red", "green"), main="Gas from 1960 to 1990", sub="Frecuencia anual del precio de Gas", ylab="Toneladas de Gas Extraído")
 
+#Apply linear model to the mean of values:
+lm(
 
 
 #for (i in 1:length(39)){
