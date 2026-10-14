@@ -25,6 +25,7 @@ length(dataGas)
 class(dataGas)
 start(dataGas); end(dataGas); frequency(dataGas)
 cat("\n", "The amount periods are: ", floor(length(dataGas) / frequency(dataGas)), "\nSince the remainder is ", length(dataGas) %% frequency(dataGas), " the fraction is: ", ((length(dataGas) / frequency(dataGas)) - floor(length(dataGas) / frequency(dataGas))), "\n")
+cat("This might as well be expressed as: ", floor(length(dataGas) / frequency(dataGas)), " Years with ", length(dataGas) %% frequency(dataGas), " months.\n")
 plot(dataGas, main="Gas price")
 window(dataGas, 1959, c(1959,12))
 # 39 valores de  window(dataGas, 1956, c(1956,12)) hasta window(dataGas, 1995, c(1995,8))
@@ -55,6 +56,12 @@ for (i in 1:39){
 	subVal[,i] <- dataGas[lowerEnd:upperBound]
 }
 subVal[1,]
+layout(1:2)
+plot(as.ts(subVal[,1], 1959, c(1959,12)), main="1959", ylab="Tons", xlab="Months")
+mean(subVal[,1])
+abline(h=2041.417, col="red")
+hist(subVal[,1], main="Distribution of Price", xlab="From Jan 1959 to Dec 1959")
+
 
 #Vectores de la media
 for (i in 1:39){
@@ -65,6 +72,14 @@ newMeanV <- as.ts(subMean, 1995, c(1995,8))
 rollDataGas <- rollapply(dataGas, 8, mean)
 ts.plot(dataGas[], rollDataGas, col=c("red", "green"))
 ts.plot(dataGas[], rollDataGas, col=c("red", "green"), main="Gas from 1960 to 1990", sub="Frecuencia anual del precio de Gas", ylab="Toneladas de Gas Extraído")
+
+# Add labels to the histogram
+layout(2:1)
+plot(-1:1, -1:1, type = "n", xlab = "Re", ylab = "Im")
+K <- 16; text(exp(1i * 2 * pi * (1:K) / K), col = 2)
+text(0
+hist(1:100)
+text()
 
 #Apply linear model to the mean of values:
 lm(
