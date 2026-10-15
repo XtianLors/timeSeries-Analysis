@@ -56,9 +56,26 @@ for (i in 1:39){
 	subVal[,i] <- dataGas[lowerEnd:upperBound]
 }
 subVal[1,]
+
+z <- zoo(11:15, as.Date(31:35))
+
+seat <- as.zoo(log(UKDriverDeaths))
+time(seat) <- as.yearmon(time(seat))
+seat <- merge(y = seat, y1 = lag(seat, k = -1),
+  y12 = lag(seat, k = -12), all = FALSE)
+rr <- rollapply(seat, width = 36,
+  FUN = function(z) coef(lm(y ~ y1 + y12, data = as.data.frame(z))),
+  by.column = FALSE, align = "right")
+
+rr <- rollapply(seat, width = 36,
+  FUN = function(z) coef(lm(seat[,1] ~ seat[,2] + seat[,3], data = as.data.frame(z))),
+  by.column = FALSE, align = "right")
+summary(rr)
+
 layout(1:2)
 plot(as.ts(subVal[,1], 1959, c(1959,12)), main="1959", ylab="Tons", xlab="Months")
 mean(subVal[,1])
+line()
 abline(h=2041.417, col="red")
 hist(subVal[,1], main="Distribution of Price", xlab="From Jan 1959 to Dec 1959")
 
