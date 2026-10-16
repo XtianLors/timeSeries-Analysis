@@ -8,6 +8,7 @@
 
 library("forecast")
 library("TSA")
+library("MASS")
 require(stats); require(graphics);require(zoo)
 library(scales)
 attach(women)
@@ -78,7 +79,11 @@ mean(subVal[,1])
 line()
 abline(h=2041.417, col="red")
 hist(subVal[,1], main="Distribution of Price", xlab="From Jan 1959 to Dec 1959")
-
+y_1t = as.ts(subVal[,4], 1962, c(1962,12))
+y_2 = as.ts(subVal[,3], 1961, c(1961,12))
+y_3 = as.ts(subVal[,2], 1960, c(1960,12))
+y_model <- lm(y_1t ~ y_2 + y_3, data = as.data.frame(subVal))
+summary(y_model)
 
 #Vectores de la media
 for (i in 1:39){
