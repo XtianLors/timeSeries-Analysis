@@ -64,26 +64,35 @@ seat <- as.zoo(log(UKDriverDeaths))
 time(seat) <- as.yearmon(time(seat))
 seat <- merge(y = seat, y1 = lag(seat, k = -1),
   y12 = lag(seat, k = -12), all = FALSE)
+function(z) coef(lm(seat[,1] ~ seat[,2] + seat[,3], data = as.data.frame(z)))
+
 rr <- rollapply(seat, width = 36,
   FUN = function(z) coef(lm(y ~ y1 + y12, data = as.data.frame(z))),
   by.column = FALSE, align = "right")
+
+function(z) coef(lm(seat[,1] ~ seat[,2] + seat[,3], data = as.data.frame(z))) == "function(z) coef(lm(seat[,1] ~ seat[,2] + seat[,3], data = as.data.frame(z)))"
 
 rr <- rollapply(seat, width = 36,
   FUN = function(z) coef(lm(seat[,1] ~ seat[,2] + seat[,3], data = as.data.frame(z))),
   by.column = FALSE, align = "right")
 summary(rr)
 
-layout(1:2)
-plot(as.ts(subVal[,1], 1959, c(1959,12)), main="1959", ylab="Tons", xlab="Months")
-mean(subVal[,1])
-line()
-abline(h=2041.417, col="red")
-hist(subVal[,1], main="Distribution of Price", xlab="From Jan 1959 to Dec 1959")
 y_1t = as.ts(subVal[,4], 1962, c(1962,12))
 y_2 = as.ts(subVal[,3], 1961, c(1961,12))
 y_3 = as.ts(subVal[,2], 1960, c(1960,12))
 y_model <- lm(y_1t ~ y_2 + y_3, data = as.data.frame(subVal))
 summary(y_model)
+
+layout(1:2)
+plot(as.ts(subVal[,1], 1959, c(1959,12)), main="1959", ylab="Tons", xlab="Months")
+mean(subVal[,1])
+line()
+abline(h=2041.417, col="red")
+t <- seq_len(nrow(subVal))
+abline(lm(subVal[,1] ~ t), col = "blue")
+hist(subVal[,1], main="Distribution of Price", xlab="From Jan 1959 to Dec 1959")
+
+layout(1:1)
 
 #Vectores de la media
 for (i in 1:39){
