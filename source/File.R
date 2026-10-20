@@ -92,6 +92,21 @@ t <- seq_len(nrow(subVal))
 abline(lm(subVal[,1] ~ t), col = "blue")
 hist(subVal[,1], main="Distribution of Price", xlab="From Jan 1959 to Dec 1959")
 
+# Its better if we see the result of four year 
+
+
+fun <- function() {
+  ANSWER <- readline("Are you a satisfied R user? ")
+  ## a better version would check the answer less cursorily, and
+  ## perhaps re-prompt
+  if (substr(ANSWER, 1, 1) == "n")
+    cat("This is impossible.  YOU LIED!\n")
+  else
+    cat("I knew it.\n")
+}
+
+
+
 layout(1:1)
 
 #Vectores de la media
