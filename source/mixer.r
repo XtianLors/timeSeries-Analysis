@@ -2,6 +2,19 @@
 
 
 takeFourSpit <- function(){
-	delf <- scan()
+	delf <- scan(what='Integer')
 	cat(delf)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
