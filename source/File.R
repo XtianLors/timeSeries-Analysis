@@ -11,6 +11,7 @@ library("TSA")
 library("MASS")
 require(stats); require(graphics);require(zoo)
 require(xts)
+require(data.table)
 #require(locator)
 require(recipes)
 library(scales)
@@ -392,6 +393,21 @@ length(unique(sample(100, 100, replace = TRUE)))
 ## approximately 100(1 - 1/e) = 63.21
 
 unique(iris)
+
+d = as.data.table(list(1:6/2, 3:8/4))
+# rollmean of single vector and single window
+frollmean(d[, V1], 3)
+
+frollmean(d, 3)
+# multiple windows at once
+frollmean(d[, .(V1)], c(3, 4))
+# multiple columns and multiple windows at once
+frollmean(d, c(3, 4))
+
+an = function(n, len) c(seq.int(n), rep(n, len-n))
+n = an(3, nrow(d))
+frollmean(d, n, adaptive=TRUE)
+
 #References
 
 	#https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/points.html
