@@ -12,6 +12,13 @@ library("MASS")
 require(stats); require(graphics);require(zoo)
 require(xts)
 require(data.table)
+#require(memsic)
+#require(memisc)
+data(UCBAdmissions)
+berkely <- UCBAdmissions
+head(berkely)
+str(berkely)
+View(berkely)
 #require(locator)
 require(recipes)
 library(scales)
@@ -74,7 +81,7 @@ rr <- rollapply(seat, width = 36,
   FUN = function(z) coef(lm(y ~ y1 + y12, data = as.data.frame(z))),
   by.column = FALSE, align = "right")
 
-function(z) coef(lm(seat[,1] ~ seat[,2] + seat[,3], data = as.data.frame(z))) == "function(z) coef(lm(seat[,1] ~ seat[,2] + seat[,3], data = as.data.frame(z)))"
+#function(z) coef(lm(seat[,1] ~ seat[,2] + seat[,3], data = as.data.frame(z))) == "function(z) coef(lm(seat[,1] ~ seat[,2] + seat[,3], data = as.data.frame(z)))"
 
 rr <- rollapply(seat, width = 36,
   FUN = function(z) coef(lm(seat[,1] ~ seat[,2] + seat[,3], data = as.data.frame(z))),
