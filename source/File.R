@@ -88,6 +88,22 @@ rr <- rollapply(seat, width = 36,
   by.column = FALSE, align = "right")
 summary(rr)
 
+of <- z ~ h + h^2 + 3*(h^3) #environment("of")
+fo <- y ~ x^2 + 2 #environment(fo)
+#Create a formula for the observations:
+	# (1, 1), (2, 3), (3, 4), (4, 6), (5, 5)
+	#Formula has to be of the form y_1 = mx_1 + b; y_2 = mx_2 + b ...
+
+xnam <- apply(paste0, 1..5)
+xnam <- c()
+for(i in 1:5){
+	append(xnam , paste0("x", toString(i)), after=length(xnam))
+}
+xnam 
+xnam <- paste0("x", 1:5)
+xnam
+(least.Squares <- as.formula(paste("y ~ ", paste(xnam, collapse="+"))))
+
 y_1t = as.ts(subVal[,4], 1962, c(1962,12))
 y_2 = as.ts(subVal[,3], 1961, c(1961,12))
 y_3 = as.ts(subVal[,2], 1960, c(1960,12))

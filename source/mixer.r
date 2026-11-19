@@ -12,6 +12,19 @@ takeFourSpit <- function(varTimeS, varTimePer){
 	#
 }
 
+for (i in 0:10) {
+	if (i < 10){
+		cat(i)
+		
+	}
+	else {
+		cat(i)
+		cat("\n")
+	}
+}
+
+for(i
+
 apply(X = window(dataGas, 1959, c(1959,12))[1:12], 1, FUN = sum)
 
 attach(UCBAdmissions)
@@ -50,8 +63,26 @@ foo <- function(x = 1, y = 2) c(x, y)
 bar <- function(n, x) replicate(n, foo(x = x))
 bar(5, x = 3)
 
+https://bookdown.org/jboscomendoza/r-principiantes4/if-else.html
+https://www.r-bloggers.com/2022/06/exercise-8-recursive-functions-in-r/
+https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/is.recursive
+http://adv-r.had.co.nz/Functional-programming.html
+http://127.0.0.1:22977/library/base/html/quit.html
+https://bookdown.org/jboscomendoza/r-principiantes4/break-y-next.html
+http://127.0.0.1:22977/library/base/html/sweep.html
+http://127.0.0.1:22977/library/stats/html/aggregate.html
+http://127.0.0.1:22977/library/base/html/apply.html
+http://127.0.0.1:22977/library/base/html/lapply.html
+https://bookdown.org/jboscomendoza/r-principiantes4/graficas.html
+https://bookdown.org/jboscomendoza/r-principiantes4/for.html
+https://rpubs.com/Ejercicios_practicos/934018
 
-
+http://127.0.0.1:26208/library/stats/html/mad.html
+http://127.0.0.1:26208/library/stats/html/glm.html
+https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/as.POSIX*
+https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/system.time
+https://www.rdocumentation.org/packages/memisc/versions/0.99.31.8.3/topics/Sapply
+http://127.0.0.1:28471/library/data.table/html/froll.html
 
 
 
