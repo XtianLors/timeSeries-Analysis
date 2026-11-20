@@ -102,7 +102,14 @@ for(i in 1:5){
 xnam 
 xnam <- paste0("x", 1:5)
 xnam
-(least.Squares <- as.formula(paste("y ~ ", paste(xnam, collapse="+"))))
+#(least.Squares <- as.formula(paste("y ~ ", paste( xnam, collapse=" + "))))
+#paste("y ~ ", paste( xnam, collapse="m+ "))
+#paste("y ~ ", paste( "m+", collapse=xnam))
+paste0("R", "Is a great language")
+paste("R", "Is a great language")
+paste0("I(","m", xnam, " +b)")
+#Con el siguiente código aún no es suficiente paste("y ~ ", paste0("I(","m", xnam, " +b)"))
+(least.Squares <- as.formula(paste("y ~ ", paste0("I(","m", xnam, " +b)", collapse=" + ")))) #Con este hay resultados suficientes
 
 y_1t = as.ts(subVal[,4], 1962, c(1962,12))
 y_2 = as.ts(subVal[,3], 1961, c(1961,12))
