@@ -9,7 +9,7 @@
 library("forecast")
 library("TSA")
 library("MASS")
-require(stats); require(graphics);require(zoo)
+require(stats); require(graphics);require(zoo) #environment(rollapply)
 require(xts)
 require(data.table)
 #require(memsic)
@@ -102,14 +102,23 @@ for(i in 1:5){
 xnam 
 xnam <- paste0("x", 1:5)
 xnam
+(fmla <- as.formula(paste("y ~ ", paste(xnam, collapse= "+"))))
+## Equivalent with reformulate():
+fmla2 <- reformulate(xnam, response = "y")
+stopifnot(identical(fmla, fmla2))
 #(least.Squares <- as.formula(paste("y ~ ", paste( xnam, collapse=" + "))))
 #paste("y ~ ", paste( xnam, collapse="m+ "))
 #paste("y ~ ", paste( "m+", collapse=xnam))
 paste0("R", "Is a great language")
 paste("R", "Is a great language")
 paste0("I(","m", xnam, " +b)")
+#?offset
+#?coplot
+#?nls
 #Con el siguiente código aún no es suficiente paste("y ~ ", paste0("I(","m", xnam, " +b)"))
 (least.Squares <- as.formula(paste("y ~ ", paste0("I(","m", xnam, " +b)", collapse=" + ")))) #Con este hay resultados suficientes
+mode(least.Squares)
+environment(least.Squares)
 
 y_1t = as.ts(subVal[,4], 1962, c(1962,12))
 y_2 = as.ts(subVal[,3], 1961, c(1961,12))
