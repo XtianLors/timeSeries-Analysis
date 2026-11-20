@@ -126,6 +126,13 @@ y_3 = as.ts(subVal[,2], 1960, c(1960,12))
 y_model <- lm(y_1t ~ y_2 + y_3, data = as.data.frame(subVal))
 summary(y_model)
 
+#Next Steps are:
+	#cex3 <- c("NULL", "1", "1:1", "1i", "list(1)", "data.frame(x = 1)",
+  #"pairlist(pi)", "c", "lm", "formals(lm)[[1]]",  "formals(lm)[[2]]",
+  #"y ~ x","expression((1))[[1]]", "(y ~ x)[[1]]",
+  #"expression(x <- pi)[[1]][[1]]")
+	#lex3 <- sapply(cex3, function(x) eval(str2lang(x)))
+
 layout(1:2)
 plot(as.ts(subVal[,1], 1959, c(1959,12)), main="1959", ylab="Tons", xlab="Months")
 mean(subVal[,1])
